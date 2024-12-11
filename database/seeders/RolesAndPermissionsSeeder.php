@@ -12,6 +12,17 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Roles
+        $admin = Role::create(['name' => 'admin']);
+        $employee = Role::create(['name' => 'employee']);
+
+        // Permisos
+        Permission::create(['name' => 'create_entries']);
+        Permission::create(['name' => 'edit_entries']);
+
+        // Asignar permisos a roles
+        $admin->givePermissionTo(['create_entries', 'edit_entries']);
+        $employee->givePermissionTo('create_entries');
+
     }
 }
